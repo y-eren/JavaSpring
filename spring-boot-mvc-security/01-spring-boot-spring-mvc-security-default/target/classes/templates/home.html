@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<meta charset="UTF-8">
+<head>
+<title>Company Home Page</title>
+</head>
+
+<body>
+	<h2>Ana Sayfa</h2>
+	<hr>
+	<p>
+	Ana sayfaya hoş geldiniz
+	
+	</p>
+	<hr>
+	
+	<p>
+	User: <span sec:authentication="principal.username"></span> <!-- Bu kısım giriş yapan kullanıcı için user id'yi göstermektedir. -->
+<br> <br>
+	Role(s) : <span sec:authentication="principal.authorities"></span>
+	</p>
+	
+	<hr>
+	<div sec:authorize="hasRole('MANAGER')">
+	<p>
+	<a th:href="@{/leaders}">Lider toplantısı (Sadece menejerler içindir)</a>
+	</p>
+	</div>
+	
+	<div sec:authorize="hasRole('ADMIN')">
+	<p>
+	<a th:href="@{/systems}">IT toplantısı (Sadece adminler içindir)</a>
+	</p>
+	</div>
+	 
+	<hr>
+	<form action="#" th:action="@{/logout}" method="POST">
+	<input type="submit" value="Logout">
+	</form>	
+</body>
+
+</html>

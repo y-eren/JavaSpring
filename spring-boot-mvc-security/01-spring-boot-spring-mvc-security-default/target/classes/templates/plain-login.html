@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<meta charset="UTF-8">
+<head>
+<title>Company Home Page</title>
+</head>
+
+<body>
+	<h3>Özel Login Ekranım</h3>
+	<form action="#" th:action="@{/authenticateTheUser}" method="POST">
+	
+	<div th:if="${param.error}">
+	<i>Üzgünüm! Giriş yapamazsınız</i>
+	</div>
+	
+	<div th:if="${param.logout}">
+	<i>Çıkış yaptınız...</i>
+	</div>
+	
+	<p>
+	User name : <input type="text" name="username" />
+	
+	</p>
+	<p>
+	Password : <input type="password" name="password" />
+	</p>
+	
+	<input type="submit" value="Login" />
+	</form>
+</body>
+
+</html>
